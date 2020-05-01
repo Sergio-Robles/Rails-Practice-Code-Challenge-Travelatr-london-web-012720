@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815094403) do
+ActiveRecord::Schema.define(version: 20200226162613) do
 
   create_table "bloggers", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20180815094403) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "news_papers", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -35,6 +42,15 @@ ActiveRecord::Schema.define(version: 20180815094403) do
     t.integer "destination_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ramons", force: :cascade do |t|
+    t.integer "posts_id"
+    t.integer "blogger_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blogger_id"], name: "index_ramons_on_blogger_id"
+    t.index ["posts_id"], name: "index_ramons_on_posts_id"
   end
 
 end
